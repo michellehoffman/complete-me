@@ -108,23 +108,24 @@ describe('TRIE', () => {
       expect(trie.root.children.h.children.o.children.w.children.d.children.y.frequency).to.eq(1);
 
       expect(trie.suggest('h')).to.deep.eq(['hi', 'howdy', 'hello', 'hiya']);
-      // console.log(trie.suggest('h'));
     });
   });
 
   describe('DELETE', () => {
-    it('should akagl', () => {
+    it('should delete the words', () => {
       trie.insert('hello');
       trie.insert('hi');
       trie.insert('hiya');
       trie.insert('howdy');
 
-      expect(trie.count).to.eq(4);
+      expect(trie.counter).to.eq(4);
+      expect(trie.suggest('h')).to.deep.eq(['hello', 'hi', 'hiya', 'howdy']);
 
       trie.delete('hi');
 
-      expect(trie.count).to.eq(3);
+      expect(trie.counter).to.eq(3);
       expect(trie.root.children.h.children.i.endWord).to.eq(null);
+      expect(trie.suggest('h')).to.deep.eq(['hello', 'hiya', 'howdy']);
     })
   })
 });
