@@ -109,6 +109,22 @@ describe('TRIE', () => {
 
       expect(trie.suggest('h')).to.deep.eq(['hi', 'howdy', 'hello', 'hiya']);
       // console.log(trie.suggest('h'));
+    });
+  });
+
+  describe('DELETE', () => {
+    it('should akagl', () => {
+      trie.insert('hello');
+      trie.insert('hi');
+      trie.insert('hiya');
+      trie.insert('howdy');
+
+      expect(trie.count).to.eq(4);
+
+      trie.delete('hi');
+
+      expect(trie.count).to.eq(3);
+      expect(trie.root.children.h.children.i.endWord).to.eq(null);
     })
   })
 });
