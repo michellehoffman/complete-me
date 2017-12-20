@@ -100,17 +100,15 @@ describe('TRIE', () => {
       trie.insert('hiya');
       trie.insert('howdy');
 
-      // console.log('Original: ' + trie.suggest('h'));
-
       trie.select('hi');
-      // trie.suggest('h');
-      expect(trie.root.children.h.children.i.frequency).to.eq(1);
+      trie.select('hi');
+      trie.select('howdy');
 
-      // trie.sort(['hello', 'hi', 'hiya', 'howdy']);
+      expect(trie.root.children.h.children.i.frequency).to.eq(2);
+      expect(trie.root.children.h.children.o.children.w.children.d.children.y.frequency).to.eq(1);
 
-      trie.suggest('h');
-
-      // console.log('New: ' + trie.suggest('h'));
+      expect(trie.suggest('h')).to.deep.eq(['hi', 'howdy', 'hello', 'hiya']);
+      // console.log(trie.suggest('h'));
     })
   })
 });
