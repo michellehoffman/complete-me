@@ -106,7 +106,9 @@ describe('TRIE', () => {
       // trie.suggest('h');
       expect(trie.root.children.h.children.i.frequency).to.eq(1);
 
-      trie.sort(['hello', 'hi', 'hiya', 'howdy']);
+      // trie.sort(['hello', 'hi', 'hiya', 'howdy']);
+
+      trie.suggest('h');
 
       // console.log('New: ' + trie.suggest('h'));
     })
