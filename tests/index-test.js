@@ -97,7 +97,7 @@ describe('TRIE', () => {
 
       trie.populate(dictionary);
 
-      expect(trie.counter).to.eq(235886);
+      expect(trie.count()).to.eq(235886);
     })
   })
 
