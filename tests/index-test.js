@@ -63,7 +63,29 @@ describe('TRIE', () => {
   });
 
   describe('SUGGEST', () => {
+    it('should return an array with similar words', () => {
+      trie.insert('pizza');
+      trie.insert('pizzeria');
+      trie.insert('apple');
 
+      expect(trie.suggest('piz')).to.deep.eq(['pizza', 'pizzeria']);
+      expect(trie.suggest('a')).to.deep.eq(['apple']);
+    });
+
+    it('should return an array if the string is uppercase', () => {
+      trie.insert('pizza');
+      trie.insert('pizzeria');
+      trie.insert('apple');
+
+      expect(trie.suggest('PIz')).to.deep.eq(['pizza', 'pizzeria']);
+      expect(trie.suggest('A')).to.deep.eq(['apple']);
+    });
+
+    it('should return empty array if word does not exist', () => {
+      trie.insert('pizza');
+
+      expect(trie.suggest('a')).to.deep.eq([]);
+    })
   });
 
   describe('POPULATE', () => {
